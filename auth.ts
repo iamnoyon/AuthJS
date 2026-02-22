@@ -5,7 +5,7 @@ export const {
     handlers,
     auth,
     signIn,
-    signOut
+    signOut,
 } = NextAuth({
     providers: [
         GoogleProvider({
@@ -20,13 +20,15 @@ export const {
         })
     ],
     callbacks: {
+        // we get data from backend in token callback and we can pass it to session callback, so that we can access it in our frontend
         async jwt({ token, account }) {
-            console.log(token, 'callbacks');
+            console.log(token, 'jwt');
             return token
         },
         async session({ session, token }) {
+            session.user.name = "Mithun Sarker";
             console.log(session, 'session');
-            return session
+            return session;
         },
     },
 })
