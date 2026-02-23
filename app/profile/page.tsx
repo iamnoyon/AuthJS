@@ -1,10 +1,10 @@
-import {auth} from '@/auth'
 import { redirect } from 'next/navigation';
-import {doLogout} from "@/actions";
+import { doLogout } from "@/actions";
+import { auth } from "@/auth";
 
 const page = async () => {
     const session = await auth();
-    if(!session?.user) redirect('/');
+    if (!session?.user) redirect('/');
 
   return (
     <div>
